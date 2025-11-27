@@ -1,0 +1,11 @@
+# Arquivos de compilação e executáveis
+*.o
+trabalho2
+trabalho2_test
+
+# Diretório de build
+build/
+
+# Arquivos temporários de editores
+*.swp
+*~
