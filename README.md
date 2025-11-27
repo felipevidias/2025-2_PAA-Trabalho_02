@@ -28,55 +28,52 @@ Para compilar e executar o projeto, você precisará de:
 
 ## Compilação
 
-O projeto utiliza um `Makefile` para gerenciar a compilação.
+O projeto utiliza um `Makefile` para gerenciar a compilação. Para compilar o programa de benchmark, execute:
 
--   **Para compilar o programa de benchmark principal:**
-    ```bash
-    make trabalho2
-    ```
+```bash
+make
+```
 
--   **Para compilar o programa de testes:**
-    ```bash
-    make
-    ```
-    (O comando `make` por padrão executa a regra `test`, que compila o `trabalho2_test`)
+Isso irá gerar o executável `trabalho2_test`.
 
--   **Para limpar os arquivos compilados:**
-    ```bash
-    make clean
-    ```
+Para limpar os arquivos compilados, utilize:
+```bash
+make clean
+```
 
 ## Execução
 
-Após a compilação, dois executáveis serão criados.
+Após a compilação, o programa de benchmark pode ser executado. Ele irá carregar o dataset, construir cada uma das estruturas de dados e executar uma consulta de exemplo, medindo os tempos de construção e de busca.
 
-1.  **Benchmark Principal (`trabalho2`)**
-    Este programa carrega o dataset, constrói cada uma das estruturas de dados e executa uma consulta de exemplo, medindo os tempos de construção e de busca.
+Para executar, passe o arquivo de dataset como argumento:
+```bash
+./trabalho2_test ColorHistogram.asc
+```
 
-    Para executar:
-    ```bash
-    ./trabalho2
-    ```
-    A saída mostrará o desempenho de cada estrutura, como no exemplo abaixo:
-    ```
-    Dataset carregado: 68040 vetores, dimensão 32
+A saída mostrará o desempenho de cada estrutura, como no exemplo abaixo:
+```
+Dataset carregado: 68040 vetores, dimensão 32
 
-    === ListSearch (baseline) ===
-    Tempo de construção: 0.0060952 s
-    Tempo de consulta: 0.00552182 s
-    Ids retornados: 1 33345 64187 51052 38839
+=== ListSearch (baseline) ===
+Tempo de construção: 0.0060952 s
+Tempo de consulta: 0.00552182 s
+Ids retornados: 1 33345 64187 51052 38839 
 
-    === HashSearch ===
-    ...
-    ```
+=== HashSearch ===
+Tempo de construção: 0.0135767 s
+Tempo de consulta: 1.766e-06 s
+Ids retornados: 1 64187 
 
-2.  **Testes (`trabalho2_test`)**
-    Este executável roda um conjunto de testes para validar a corretude das implementações.
+=== LSH ===
+Tempo de construção: 0.0754568 s
+Tempo de consulta: 0.000606753 s
+Ids retornados: 1 33345 64187 51052 38839 
 
-    Para executar:
-    ```bash
-    ./trabalho2_test
-    ```
+=== MTree (árvore métrica simples) ===
+Tempo de construção: 0.107141 s
+Tempo de consulta: 0.00688957 s
+Ids retornados: 1 33345 64187 51052 38839 
+```
 
 ## Estrutura do Projeto
 
