@@ -1,0 +1,36 @@
+# Compilador e flags
+CXX      = g++
+CXXFLAGS = -std=c++17 -O2 -Wall -Iinclude
+
+# Arquivos fonte
+SRC = \
+    src/dataset.cpp \
+    src/list_search.cpp \
+    src/hash_search.cpp \
+    src/lsh.cpp \
+    src/mtree.cpp \
+    src/main.cpp
+
+# Objetos (.o)
+OBJ = $(SRC:.cpp=.o)
+
+# Nome do executável
+TARGET = trabalho2
+
+# Regra padrão
+all: $(TARGET)
+
+# Linkagem final
+$(TARGET): $(OBJ)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Regra genérica para compilar .cpp em .o
+src/%.o: src/%.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Limpar arquivos gerados
+clean:
+	rm -f $(OBJ) $(TARGET)
+
+# Não é arquivo de verdade
+.PHONY: all clean
